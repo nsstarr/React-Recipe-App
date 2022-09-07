@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Splide, SplideSlide, SplideStyle } from "@splidejs/react-splide";
+import "@splidejs/splide/dist/css/splide.min.css";
 
 function Popular() {
   const [popular, setPopular] = useState([]);
@@ -15,24 +17,28 @@ function Popular() {
     const data = await api.json();
     console.log(data);
     setPopular(data.recipes);
-    console.log(data.recipes)
+    console.log(data.recipes);
   };
 
   return (
     <div>
-      {popular.map((recipe) => {
-        return (
-          <Wrapper>
-            <h3>Trending</h3>
-            {popular.map((recipe) => {
-              return <Card>
-                <p>{recipe.title}</p>
-                <img src={recipe.image} alt={recipe.title} />
-              </Card>;
-            })}
-          </Wrapper>
-        );
-      })}
+      return (
+      <Wrapper>
+        <h3>Trending</h3>
+        <Splide>
+          {popular.map((recipe) => {
+            return (
+              <SplideSlide>
+                <Card>
+                  <p>{recipe.title}</p>
+                  <img src={recipe.image} alt={recipe.title} />
+                </Card>
+              </SplideSlide>
+            );
+          })}
+        </Splide>
+      </Wrapper>
+      );
     </div>
   );
 }
@@ -43,6 +49,11 @@ const Wrapper = styled.div`
 const Card = styled.div`
   min-height: 25rem;
   border-radius: 2rem;
+  overflow: hidden;
+
+  img {
+    border-radius: 2rem;
+  }
 `;
 
 export default Popular;
