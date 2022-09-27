@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide, SplideStyle } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function Popular() {
   const [popular, setPopular] = useState([]);
@@ -46,11 +46,11 @@ function Popular() {
             return (
               <SplideSlide key={recipe.id}>
                 <Card>
-                <Link to={'/recipe/' + recipe.id}>
-                  <p>{recipe.title}</p>
-                  <img src={recipe.image} alt={recipe.title} />
-                  <Gradient />
-                </Link>
+                  <Link to={"/recipe/" + recipe.id}>
+                    <p>{recipe.title}</p>
+                    <img src={recipe.image} alt={recipe.title} />
+                    <Gradient />
+                  </Link>
                 </Card>
               </SplideSlide>
             );
@@ -63,6 +63,10 @@ function Popular() {
 
 const Wrapper = styled.div`
   margin: 4rem 0rem;
+  h3 {
+    font-weight: 800;
+    margin-left: 1rem;
+  }
 `;
 const Card = styled.div`
   min-height: 25rem;
@@ -102,7 +106,6 @@ const Gradient = styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
-
 `;
 
 export default Popular;

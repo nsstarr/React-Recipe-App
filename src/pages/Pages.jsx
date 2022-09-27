@@ -7,10 +7,10 @@ import Recipe from "../components/Recipe";
 import { AnimatePresence } from "framer-motion";
 
 function Pages() {
-  const location = useLocation()
+  const location = useLocation();
   return (
     <AnimatePresence exitBeforeEnter>
-      <Routes location={location} key = {location.pathname}>
+      <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/cuisine/:type" element={<Cuisine />} />
         <Route path="/searched/:search" element={<Searched />} />

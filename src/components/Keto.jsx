@@ -4,34 +4,34 @@ import { Splide, SplideSlide, SplideStyle } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { Link } from "react-router-dom";
 
-function Veggie() {
-  const [veggie, setVeggie] = useState([]);
+function Keto() {
+  const [keto, setKeto] = useState([]);
 
   useEffect(() => {
-    getVeggie();
+    getKeto();
   }, []);
 
-  const getVeggie = async () => {
-    const check = localStorage.getItem("veggie");
+  const getKeto = async () => {
+    const check = localStorage.getItem("keto");
 
     if (check) {
-      setVeggie(JSON.parse(check));
+      setKeto(JSON.parse(check));
     } else {
       const api = await fetch(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=ketogenic`
       );
       const data = await api.json();
 
-      localStorage.setItem("veggie", JSON.stringify(data.recipes));
+      localStorage.setItem("keto", JSON.stringify(data.recipes));
       console.log(data);
-      setVeggie(data.recipes);
+      setKeto(data.recipes);
       console.log(data.recipes);
     }
   };
   return (
     <div>
       <Wrapper>
-        <h3>Our Vegetarian Picks 🥦</h3>
+        <h3>Keto</h3>
         <Splide
           options={{
             perPage: 3,
@@ -41,7 +41,7 @@ function Veggie() {
             gap: "5rem",
           }}
         >
-          {veggie.map((recipe) => {
+          {keto.map((recipe) => {
             return (
               <SplideSlide key={recipe.id}>
                 <Card>
@@ -70,7 +70,6 @@ const Wrapper = styled.div`
   }
 `;
 
-;
 const Card = styled.div`
   min-height: 25rem;
   border-radius: 2rem;
@@ -111,4 +110,4 @@ const Gradient = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
 `;
 
-export default Veggie;
+export default Keto;

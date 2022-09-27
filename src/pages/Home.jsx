@@ -1,5 +1,6 @@
 import Veggie from "../components/Veggie";
 import Popular from "../components/Popular";
+import Keto from "../components/Keto";
 import {motion} from 'framer-motion'
 
 function Home() {
@@ -12,6 +13,7 @@ function Home() {
     >
       <Veggie />
       <Popular />
+      <Keto/>
     </motion.div>
   );
 }
